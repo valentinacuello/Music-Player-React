@@ -1,13 +1,78 @@
 @import "~bootstrap/scss/bootstrap.scss";
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500&display=swap');
 
-/* 
+$Purpura: #27153e;
+$Purpura-lg: #563186;
+$Purpura-lg-2: #7134c2;
 
-    You can write your own styles here...
-    
-    
-    ...Or you can use the import command to include 
-    other sylesheets into your bunde as well, e.j:
-    
-    import 'relative/path/to/stylesheet.scss';
+*{
+    padding: 0;
+    margin: 0;
+}
 
-*/
+.rp-container{
+    width: 100%;
+    height: 100vh;
+    background: linear-gradient(0deg, rgba(39,21,62,1) 0%, rgba(59,17,112,1) 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .rp-item-container{
+        width: 70%;
+
+        .rp-item{
+            height: 50px;
+            display: flex;
+            align-items: center;
+            padding: 0 2em;            
+            border-top: solid 1px $Purpura-lg;
+
+            &:last-of-type{
+                border-bottom: solid 1px $Purpura-lg;
+            }
+                
+            p{
+                margin: 0;
+                color: #fff;
+                font-family: "Poppins";
+
+                span{
+                    color: $Purpura-lg-2;
+                    margin-right: 3em;
+                }
+            }
+            
+        }
+
+    }
+
+    
+    .rp-btn{
+        width: 70%;
+        height: 60px;
+        background-color: rgba(86,49,132,.5);
+        border-radius: 10px;
+        margin-top: 1em;
+        vertical-align: middle;
+        display: flex;
+            justify-content: center;
+            align-items: center;
+
+        button{
+            width: 40px;
+            height: 50px;
+            background: none;
+            border: none;
+            margin: 0;
+            color: #fff;
+            cursor: pointer;
+
+            &:last-child{
+                transform: scaleX(-1);
+            }
+        }
+    }
+    
+}
