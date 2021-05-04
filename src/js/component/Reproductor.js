@@ -8,6 +8,7 @@ import {
 } from "react-bootstrap-icons";
 
 const Reproductor = () => {
+	const [isPlaying, setPlaying] = useState(false);
 	const [songList, setSongList] = useState([
 		{
 			id: 1,
@@ -148,8 +149,10 @@ const Reproductor = () => {
 	const reproducir = () => {
 		if (audio.current.paused) {
 			audio.current.play();
+			setPlaying(true);
 		} else if (!audio.current.paused) {
 			audio.current.pause();
+			setPlaying(false);
 		}
 	};
 
@@ -177,7 +180,11 @@ const Reproductor = () => {
 						<SkipForwardBtnFill size={30} />
 					</button>
 					<button id="play" onClick={reproducir}>
-						<PlayFill size={30} />
+						{isPlaying ? (
+							<PauseBtnFill size={30} />
+						) : (
+							<PlayFill size={30} />
+						)}
 					</button>
 					<button id="backward">
 						<SkipForwardBtnFill size={30} />
