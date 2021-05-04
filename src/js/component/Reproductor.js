@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useRef } from "react";
 import Style from "../../styles/index.scss";
 import {
 	SkipBackwardBtnFill,
@@ -143,22 +143,40 @@ const Reproductor = () => {
 		}
 	]);
 
+	let audio = useRef();
+
+	const reproducir = () => {
+		if (audio.current.paused) {
+			audio.current.play();
+		} else if (!audio.current.paused) {
+			audio.current.pause();
+		}
+	};
+
+	const linkFijo = "https://assets.breatheco.de/apis/sound/";
+
 	return (
 		<div>
 			<div className="rp-container">
 				<div className="rp-item-container">
-					<div className="rp-item">
-						<p>
-							<span id="">12</span> 2 Wicky - Hooverphonic
-						</p>
-					</div>
+					{songList.map((objeto, index) => {
+						return (
+							<div className="rp-item" key={index}>
+								<p>
+									<span>{objeto.id}</span> {objeto.name}
+								</p>
+								<audio
+									ref={audio}
+									src={linkFijo + objeto.url}></audio>
+							</div>
+						);
+					})}
 				</div>
 				<div className="rp-btn">
-					<audio></audio>
 					<button id="forward">
 						<SkipForwardBtnFill size={30} />
 					</button>
-					<button id="play">
+					<button id="play" onClick={reproducir}>
 						<PlayFill size={30} />
 					</button>
 					<button id="backward">
