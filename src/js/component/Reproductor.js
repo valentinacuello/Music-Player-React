@@ -161,6 +161,7 @@ const Reproductor = () => {
 		let stringfijo = "https://assets.breatheco.de/apis/sound/";
 		audio.current.src = stringfijo + url;
 		setSongActual(songIndex);
+		setPlaying(true);
 	};
 
 	const nextSong = () => {
