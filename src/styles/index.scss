@@ -28,9 +28,14 @@ $Purpura-lg-2: #7134c2;
             align-items: center;
             padding: 0 2em;            
             border-top: solid 1px $Purpura-lg;
+            cursor: pointer;
 
             &:last-of-type{
                 border-bottom: solid 1px $Purpura-lg;
+            }
+
+            &:hover{
+                background-color: rgba(109, 29, 207, 0.2);
             }
                 
             p{
@@ -46,7 +51,14 @@ $Purpura-lg-2: #7134c2;
             
         }
 
+        .active{
+            background-color: rgba(177, 125, 241, 0.2);
+        }       
+        
+
     }
+
+    
 
     
     .rp-btn{

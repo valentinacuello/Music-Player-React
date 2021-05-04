@@ -143,6 +143,7 @@ const Reproductor = () => {
 			url: "files/cartoons/songs/x-men.mp3"
 		}
 	]);
+	const [songActual, setSongActual] = useState();
 
 	let audio = useRef();
 
@@ -156,7 +157,26 @@ const Reproductor = () => {
 		}
 	};
 
-	const linkFijo = "https://assets.breatheco.de/apis/sound/";
+	const cambiarSrcAudio = (url, songIndex) => {
+		let stringfijo = "https://assets.breatheco.de/apis/sound/";
+		audio.current.src = stringfijo + url;
+		setSongActual(songIndex);
+	};
+
+	const nextSong = () => {
+		let songIndex = songActual + 1;
+		if (songIndex > songList.length - 1) {
+			songIndex = 0;
+		}
+		cambiarSrcAudio(songList[songIndex].url, songIndex);
+		audio.current.play();
+	};
+
+	const previousSong = () => {
+		let previousSong = songActual - 1;
+		cambiarSrcAudio(songList[previousSong].url, previousSong);
+		audio.current.play();
+	};
 
 	return (
 		<div>
@@ -164,19 +184,28 @@ const Reproductor = () => {
 				<div className="rp-item-container">
 					{songList.map((objeto, index) => {
 						return (
-							<div className="rp-item" key={index}>
+							<div
+								className={
+									"rp-item " +
+									(songActual == index ? "active" : "")
+								}
+								key={index}
+								onClick={() => {
+									cambiarSrcAudio(objeto.url, index);
+									reproducir();
+								}}>
 								<p>
 									<span>{objeto.id}</span> {objeto.name}
 								</p>
-								<audio
-									ref={audio}
-									src={linkFijo + objeto.url}></audio>
 							</div>
 						);
 					})}
+					<audio
+						ref={audio}
+						src="https://assets.breatheco.de/apis/sound/files/mario/songs/castle.mp3"></audio>
 				</div>
 				<div className="rp-btn">
-					<button id="forward">
+					<button id="forward" onClick={previousSong}>
 						<SkipForwardBtnFill size={30} />
 					</button>
 					<button id="play" onClick={reproducir}>
@@ -186,7 +215,7 @@ const Reproductor = () => {
 							<PlayFill size={30} />
 						)}
 					</button>
-					<button id="backward">
+					<button id="backward" onClick={nextSong}>
 						<SkipForwardBtnFill size={30} />
 					</button>
 				</div>
