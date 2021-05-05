@@ -1,10 +1,12 @@
 import React, { useState, useRef } from "react";
 import Style from "../../styles/index.scss";
 import {
-	SkipBackwardBtnFill,
-	PlayFill,
-	SkipForwardBtnFill,
-	PauseBtnFill
+	SkipForwardFill,
+	PlayCircleFill,
+	PauseCircleFill,
+	SkipBackwardFill,
+	Shuffle,
+	ArrowRepeat
 } from "react-bootstrap-icons";
 
 const Reproductor = () => {
@@ -183,42 +185,52 @@ const Reproductor = () => {
 		<div>
 			<div className="rp-container">
 				<div className="rp-item-container">
-					{songList.map((objeto, index) => {
-						return (
-							<div
-								className={
-									"rp-item " +
-									(songActual == index ? "active" : "")
-								}
-								key={index}
-								onClick={() => {
-									cambiarSrcAudio(objeto.url, index);
-									reproducir();
-								}}>
-								<p>
-									<span>{objeto.id}</span> {objeto.name}
-								</p>
-							</div>
-						);
-					})}
-					<audio
-						ref={audio}
-						src="https://assets.breatheco.de/apis/sound/files/mario/songs/castle.mp3"></audio>
+					<div className="rp-items-list">
+						{songList.map((objeto, index) => {
+							return (
+								<div
+									className={
+										"rp-item " +
+										(songActual == index ? "active" : "")
+									}
+									key={index}
+									onClick={() => {
+										cambiarSrcAudio(objeto.url, index);
+										reproducir();
+									}}>
+									<p>
+										<span>{objeto.id}</span> {objeto.name}
+									</p>
+								</div>
+							);
+						})}
+						<audio
+							ref={audio}
+							src="https://assets.breatheco.de/apis/sound/files/mario/songs/castle.mp3"></audio>
+					</div>
 				</div>
-				<div className="rp-btn">
-					<button id="forward" onClick={previousSong}>
-						<SkipForwardBtnFill size={30} />
-					</button>
-					<button id="play" onClick={reproducir}>
-						{isPlaying ? (
-							<PauseBtnFill size={30} />
-						) : (
-							<PlayFill size={30} />
-						)}
-					</button>
-					<button id="backward" onClick={nextSong}>
-						<SkipForwardBtnFill size={30} />
-					</button>
+				<div className="rp-btn-container">
+					<div className="rp-btn">
+						<button>
+							<Shuffle size={15} />
+						</button>
+						<button id="forward" onClick={previousSong}>
+							<SkipBackwardFill size={20} />
+						</button>
+						<button id="play" onClick={reproducir}>
+							{isPlaying ? (
+								<PauseCircleFill size={40} />
+							) : (
+								<PlayCircleFill size={40} />
+							)}
+						</button>
+						<button id="backward" onClick={nextSong}>
+							<SkipForwardFill size={20} />
+						</button>
+						<button>
+							<ArrowRepeat size={15} />
+						</button>
+					</div>
 				</div>
 			</div>
 		</div>
