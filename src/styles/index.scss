@@ -22,58 +22,45 @@ $Purpura-lg-2: #7134c2;
 
     .rp-item-container{
         height: 85%;
+        overflow: overlay;
 
-        .rp-items-list{
-            height: 100%;
-            overflow: overlay;
 
-            .rp-item{
-            height: 50px;
-            display: flex;
-            align-items: center;
-            padding: 0 2em;            
-            border-top: solid 1px $Purpura-lg;
-            cursor: pointer;
+        .rp-item{
+        height: 50px;
+        display: flex;
+        align-items: center;
+        padding: 0 2em;            
+        border-top: solid 1px $Purpura-lg;
+        cursor: pointer;
 
-                &:last-of-type{
-                    border-bottom: solid 1px $Purpura-lg;
-                }
-
-                &:hover{
-                    background-color: rgba(109, 29, 207, 0.2);
-                }
-                    
-                p{
-                    margin: 0;
-                    color: #fff;
-                    font-family: "Poppins";
-
-                    span{
-                        color: $Purpura-lg-2;
-                        margin-right: 3em;
-                    }
-                }                
-            
-            } 
-
-            &::-webkit-scrollbar {
-                display: none;
+            &:last-of-type{
+                border-bottom: solid 1px $Purpura-lg;
             }
 
-
-            @media all and (min-width: 768px){
-                    &{
-                        width: 90%;
-                    }
+            &:hover{
+                background-color: rgba(109, 29, 207, 0.2);
             }
+                
+            p{
+                margin: 0;
+                color: #fff;
+                font-family: "Poppins";
 
+                span{
+                    color: $Purpura-lg-2;
+                    margin-right: 3em;
+                }
+            }                
+        
+        } 
+
+        &::-webkit-scrollbar {
+            display: none;
         }
 
         @media all and (min-width: 768px){
             &{
-                width: 100%;
-                display: flex;
-                    justify-content: center;
+                width: 85%;
             }
         }
             
